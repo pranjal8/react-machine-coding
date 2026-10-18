@@ -4,15 +4,33 @@ export const problems = [
     title: "Todo App",
     difficulty: "Easy",
     minutes: 30,
-    description: "Add, complete and delete tasks with a filter for all, active and done.",
+    description:
+      "Add, complete and delete tasks with a filter for all, active and done.",
     folder: "src/problems/todo-app",
+  },
+  {
+    id: "clock",
+    title: "Clock",
+    difficulty: "Easy",
+    minutes: 30,
+    description: "",
+    folder: "src/problems/clock",
+  },
+  {
+    id: "multi-step-form",
+    title: "Multi Step Form",
+    difficulty: "Easy",
+    minutes: 30,
+    description: "",
+    folder: "src/problems/multi-step-form",
   },
   {
     id: "autocomplete",
     title: "Autocomplete",
     difficulty: "Medium",
     minutes: 45,
-    description: "Search box with debounced suggestions and keyboard navigation.",
+    description:
+      "Search box with debounced suggestions and keyboard navigation.",
     folder: "src/problems/autocomplete",
   },
   {
@@ -20,7 +38,8 @@ export const problems = [
     title: "Star Rating",
     difficulty: "Easy",
     minutes: 25,
-    description: "Hover and click to rate, with a configurable number of stars.",
+    description:
+      "Hover and click to rate, with a configurable number of stars.",
     folder: "src/problems/star-rating",
   },
   {
