@@ -1,75 +1,64 @@
-import { useReducer, useState } from "react";
+import { useState } from "react";
+import AddTodo from "./AddTodo";
+import TaskList from "./TaskList";
 
-function TodoApp() {
-  const [input, setInput] = useState("");
-  const [list, setList] = useState([]);
-  
+const initialTodos = [
+  { id: 1, title: "Buy milk", done: true },
+  { id: 2, title: "Eat tacos", done: false },
+  { id: 3, title: "Brew tea", done: false },
+];
 
-  function handleAdd() {
-    const text = input.trim();
-    if (!text) return;
+export default function TodoTask() {
+  const [todos, setTodos] = useState(initialTodos);
 
-    setList((prevList) => [
-      ...prevList,
-      { id: Date.now(), inputText: text, completed: false },
+  function handleAddTodo(title) {
+    setTodos([
+      ...todos,
+      {
+        id: crypto.randomUUID(),
+        title: title,
+        done: false,
+      },
     ]);
 
-    setInput("");
+    //approach 2
+    /*   setTodos((prev) => [
+          ...prev,
+          { id: crypto.randomUUID(), title, done: false },
+        ]); 
+    */
   }
 
-  function handleToggle(id) {
-    setList((prevList) =>
-      prevList.map((item) =>
-        item.id === id ? { ...item, completed: !item.completed } : item,
-      ),
+  function handleChangeTodo(nextTodo) {
+    /* 
+      //edit and toggle
+      map builds a new array. For each item, if the id matches it swaps in nextTodo, 
+      otherwise it keeps the old one. The child already built the whole new todo, 
+      so the parent doesn’t care which field changed.
+    */
+
+    setTodos((prev) =>
+      prev.map((item) => (item.id === nextTodo.id ? nextTodo : item)),
     );
   }
 
-  function handleEdit(item) {
+  function handleDeleteTodo(todoId) {
+    const deletedTodo = todos.filter((item) => item.id !== todoId);
+    setTodos(deletedTodo);
 
-  }
-
-  function handleDelete(id) {
-    const filteredList = (prevList) =>
-      prevList.filter((item) => item.id !== id);
-
-    setList(filteredList);
+    //approach 2
+    // setTodos((prev) => prev.filter((item) => item.id !== todoId));
   }
 
   return (
     <div>
-      <h3>Todo App</h3>
-      <input
-        type="text"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        onKeyDown={(e) => e.key === "Enter" && handleAdd()}
-      />{" "}
-      <button onClick={handleAdd}>Add</button>
-      <div>
-        <ul>
-          {list.map((item) => (
-            <li key={item.id}>
-              <input
-                type="checkbox"
-                checked={item.completed}
-                onChange={() => handleToggle(item.id)}
-              />
-              <span
-                style={{
-                  textDecoration: item.completed ? "line-through" : "none",
-                }}
-              >
-                {item.inputText}
-              </span>
-              <button onClick={() => handleEdit(item)}>Edit</button>
-              <button onClick={() => handleDelete(item.id)}>Delete</button>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <AddTodo onAdd={handleAddTodo} />
+
+      <TaskList
+        todos={todos}
+        onChange={handleChangeTodo}
+        onDelete={handleDeleteTodo}
+      />
     </div>
   );
 }
-
-export default TodoApp;
