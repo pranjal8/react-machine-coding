@@ -1,7 +1,8 @@
 import { problems } from "../data/problems";
 import ProblemCard from "../components/ProblemCard";
+import { Sun, Moon } from "lucide-react";
 
-const HomePage = () => {
+const HomePage = ({ onToggleTheme, theme }) => {
   return (
     <div className="container">
       <header className="site-header">
@@ -12,8 +13,9 @@ const HomePage = () => {
           </p>
         </div>
 
-        <button type="button" className="theme-btn">
-          Switch to dark mode
+        <button type="button" className="theme-btn" onClick={onToggleTheme}>
+          {theme === "light" ? <Moon size={16} /> : <Sun size={16} />}
+          Switch to {theme === "light" ? "dark" : "light"} mode
         </button>
       </header>
 
