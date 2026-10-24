@@ -1,0 +1,31 @@
+.counter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.counter-value {
+  font-size: 72px;
+  font-weight: 700;
+}
+.counter-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+.counter-step {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+.counter-step input {
+  width: 60px;
+  padding: 6px;
+  border: 1px solid #87898e;
+  border-radius: 6px;
+  text-align: center;
+}

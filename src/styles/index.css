@@ -31,15 +31,29 @@
 }
 
 body {
+  display: block; /* undoes Vite starter's flex centering */
   margin: 0;
-  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif;
   background: var(--bg);
   color: var(--text);
 }
 
+/* undoes Vite starter's #root width limit and centered text */
+#root {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
 /* ---------- Layout ---------- */
 .container {
-  max-width: 1100px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 32px 24px;
 }
@@ -114,7 +128,9 @@ body {
   border: 1px solid var(--border);
   border-radius: 16px;
   box-shadow: var(--shadow);
-  transition: transform 0.15s ease, border-color 0.15s ease;
+  transition:
+    transform 0.15s ease,
+    border-color 0.15s ease;
 }
 
 .card:hover {
@@ -137,6 +153,33 @@ body {
   border-radius: 999px;
 }
 
+.card-badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.card-priority {
+  padding: 4px 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--bg);
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.card-group {
+  padding: 4px 12px;
+  font-size: 0.85rem;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
 .card-time {
   font-size: 0.9rem;
   color: var(--muted);
@@ -151,6 +194,7 @@ body {
   margin: 0;
   line-height: 1.5;
   color: var(--muted);
+  white-space: pre-line; /* turns \n / newlines in the text into line breaks */
 }
 
 .card-folder {
@@ -159,6 +203,25 @@ body {
   font-size: 0.9rem;
   background: var(--code-bg);
   border-radius: 6px;
+}
+
+/* ---------- Tags ---------- */
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card-tag {
+  padding: 3px 10px;
+  font-size: 0.8rem;
+  color: var(--muted);
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 999px;
 }
 
 .card-link {
