@@ -1,0 +1,451 @@
+/* ---------- Theme variables (HackerRank-style dark is the default) ---------- */
+:root {
+  color-scheme: dark;
+  --bg: #0e1116; /* page background */
+  --surface: #1a1d23; /* cards and panels */
+  --text: #ffffff;
+  --muted: #8b929c; /* secondary text */
+  --border: #272b33;
+  --accent: #2ec866; /* HackerRank green */
+  --accent-soft: #14301f; /* dark green tint */
+  --accent-contrast: #0e1116; /* text on solid green */
+  --link: #6b7cff; /* periwinkle links */
+  --code-bg: #20242b;
+  --shadow: 0 4px 12px rgb(0 0 0 / 0.5);
+
+  /* difficulty colors */
+  --easy: #2ec866;
+  --easy-bg: #14301f;
+  --medium: #f5b83d;
+  --medium-bg: #2b2412;
+  --hard: #ff6b6b;
+  --hard-bg: #2d1518;
+}
+
+/* Optional light theme: set data-theme="light" on <html> */
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --text: #1f2328;
+  --muted: #59636e;
+  --border: #d1d9e0;
+  --accent: #116329;
+  --accent-soft: #dafbe1;
+  --accent-contrast: #ffffff;
+  --link: #4350d6;
+  --code-bg: #f6f8fa;
+  --shadow: 0 1px 3px rgb(31 35 40 / 0.08);
+
+  --easy: #116329;
+  --easy-bg: #dafbe1;
+  --medium: #7d4e00;
+  --medium-bg: #fff8c5;
+  --hard: #a40e26;
+  --hard-bg: #ffebe9;
+}
+
+/* ---------- Reset / base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  display: block; /* undoes Vite starter's flex centering */
+  margin: 0;
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* undoes Vite starter's #root width limit and centered text */
+#root {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+/* ---------- Layout ---------- */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+
+/* ---------- Header ---------- */
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.site-title {
+  margin: 0;
+  font-size: 2.5rem;
+  line-height: 1.1;
+}
+
+.site-subtitle {
+  margin: 8px 0 0;
+  color: var(--muted);
+}
+
+.theme-btn {
+  padding: 10px 16px;
+  font: inherit;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.theme-btn:hover {
+  border-color: var(--accent);
+}
+
+/* ---------- Section heading ---------- */
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin: 32px 0 20px;
+}
+
+.section-title {
+  margin: 0;
+  font-size: 1.75rem;
+}
+
+.search-input {
+  flex: 1;
+  max-width: 360px;
+  padding: 10px 14px;
+  font: inherit;
+  border: 1px solid var(--border);
+  outline: none;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.search-input::placeholder {
+  color: var(--muted);
+}
+
+.search-input:hover {
+  border-color: var(--muted);
+}
+
+.search-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.section-count {
+  color: var(--muted);
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.chip {
+  padding: 8px 18px;
+  font: inherit;
+  color: var(--accent);
+  background: var(--surface);
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.chip:hover {
+  background: var(--accent-soft);
+}
+
+.chip--active,
+.chip--active:hover {
+  color: var(--accent-contrast);
+  background: var(--accent);
+}
+
+.controls select {
+  padding: 10px 12px;
+  font: inherit;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+/* ---------- Grid ---------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+/* ---------- Card ---------- */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  transition:
+    transform 0.15s ease,
+    border-color 0.15s ease,
+    background 0.15s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  background: linear-gradient(
+    145deg,
+    var(--accent-soft) 0%,
+    var(--surface) 70%
+  );
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* difficulty badge: base style, then one modifier per difficulty
+   (modifiers must stay AFTER .card-badge so they override it) */
+.card-badge {
+  padding: 4px 14px;
+  font-size: 0.9rem;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+}
+
+.card-badge--easy {
+  color: var(--easy);
+  background: var(--easy-bg);
+  border-color: var(--easy);
+}
+
+.card-badge--medium {
+  color: var(--medium);
+  background: var(--medium-bg);
+  border-color: var(--medium);
+}
+
+.card-badge--hard {
+  color: var(--hard);
+  background: var(--hard-bg);
+  border-color: var(--hard);
+}
+
+.card-badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.card-priority {
+  padding: 4px 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent-contrast);
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.card-group {
+  padding: 4px 12px;
+  font-size: 0.85rem;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.card-time {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.card-title {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.card-description {
+  margin: 0;
+  line-height: 1.5;
+  color: var(--muted);
+  white-space: pre-line; /* turns \n / newlines in the text into line breaks */
+}
+
+.card-folder {
+  align-self: flex-start;
+  padding: 8px 10px;
+  font-size: 0.9rem;
+  background: var(--code-bg);
+  border-radius: 6px;
+}
+
+/* ---------- Tags ---------- */
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card-tag {
+  padding: 3px 10px;
+  font-size: 0.8rem;
+  color: var(--muted);
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+}
+
+.card-link {
+  margin-top: auto;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.card-link:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Problem page ---------- */
+.topbar {
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.back-link {
+  color: var(--link);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.problem-title-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 32px 0 24px;
+}
+
+.problem-title {
+  margin: 0;
+  font-size: 2.5rem;
+}
+
+.problem-layout {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 24px;
+  align-items: start;
+}
+
+.solution-panel,
+.requirements {
+  padding: 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+}
+
+.solution-panel h2,
+.requirements h2 {
+  margin-top: 0;
+}
+
+/* ---------- Requirements and hints panel ---------- */
+.problem-description {
+  margin: 0 0 16px;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.requirements ul,
+.requirements ol {
+  margin: 12px 0;
+  padding-left: 20px;
+  line-height: 1.6;
+}
+
+.requirements li {
+  margin-bottom: 6px;
+}
+
+.hints {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+/* solid green button, like "Start Preparation" */
+.hint-btn {
+  padding: 8px 14px;
+  font: inherit;
+  font-weight: 600;
+  color: var(--accent-contrast);
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.hint-btn:hover {
+  opacity: 0.85;
+}
+
+/* ---------- Small screens ---------- */
+@media (max-width: 900px) {
+  .problem-layout {
+    grid-template-columns: 1fr; /* stack the panels */
+  }
+
+  .problem-title-row {
+    flex-wrap: wrap;
+  }
+}

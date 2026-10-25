@@ -17,7 +17,11 @@ export default function ProblemCard({ problem }) {
     <article className="card">
       <div className="card-top">
         <div className="card-badges">
-          <span className="card-badge">{difficulty}</span>
+          <span
+            className={`card-badge card-badge--${difficulty.toLowerCase()}`}
+          >
+            {difficulty}
+          </span>
           {priority && (
             <span className="card-priority">Priority {priority}</span>
           )}

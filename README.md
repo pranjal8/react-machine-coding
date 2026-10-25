@@ -1,15 +1,24 @@
 # React Machine Coding
 
+Frontend machine-coding practice built with React, JavaScript, and CSS, with no UI libraries.
+
 Live demo: https://react-machine-coding-delta.vercel.app/
 
-Practice site for interview-style React problems. One folder per problem.
+Implemented common frontend machine-coding problems from scratch. Coding Practice | React, JavaScript, CSS
 
-## Run locally
+# Tech
 
-npm install
-npm run dev
+React · JavaScript (ES6+) · CSS · Vite
 
-## Problems
+# Run locally
+
+    git clone <https://github.com/pranjal8/react-machine-coding.git>
+
+    cd react-machine-coding
+    npm install
+    npm run dev
+
+# Problems
 
 - [x] Todo App
 - [x] Accordion
