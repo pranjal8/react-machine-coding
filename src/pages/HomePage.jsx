@@ -4,7 +4,7 @@ import { Sun, Moon } from "lucide-react";
 import { useState } from "react";
 
 const groups = ["All", ...new Set(problems.map((p) => p.group))];
-console.log(groups);
+
 const HomePage = ({ onToggleTheme, theme }) => {
   const [input, setInput] = useState("");
   const [sortOrder, setSortOrder] = useState("asc");
@@ -45,18 +45,18 @@ const HomePage = ({ onToggleTheme, theme }) => {
       <main>
         <div className="section-head">
           <h2 className="section-title">Practice problems</h2>
-          <input
-            className="search-input"
-            placeholder="Search by name or tag"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-          />
           <span className="section-count">
             {filteredProblems.length} of {problems.length} problems
           </span>
         </div>
 
         <div className="controls">
+          <input
+            className="search-input"
+            placeholder="Search by name or tag"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+          />
           <div className="chips">
             {groups.map((item) => (
               <button

@@ -120,9 +120,9 @@ body {
 .section-head {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
   gap: 16px;
-  margin: 32px 0 20px;
+  margin: 32px 0 16px;
 }
 
 .section-title {
@@ -131,11 +131,14 @@ body {
 }
 
 .search-input {
-  flex: 1;
-  max-width: 360px;
+  flex: 0 1 280px;
+  min-width: 200px;
   padding: 10px 14px;
   font: inherit;
+  color: var(--text);
+  background: var(--surface);
   border: 1px solid var(--border);
+  border-radius: 10px;
   outline: none;
   transition:
     border-color 0.15s ease,
@@ -161,7 +164,6 @@ body {
 
 .controls {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   gap: 12px;
@@ -195,6 +197,7 @@ body {
 }
 
 .controls select {
+  margin-left: auto; /* pushes the sort dropdown to the right end */
   padding: 10px 12px;
   font: inherit;
   color: var(--text);
@@ -381,7 +384,7 @@ body {
   display: grid;
   grid-template-columns: 1fr 380px;
   gap: 24px;
-  align-items: start;
+  align-items: start; /* needed for the sticky panel to work */
 }
 
 .solution-panel,
@@ -439,7 +442,15 @@ body {
   opacity: 0.85;
 }
 
-/* ---------- Small screens ---------- */
+/* sticky right panel on the problem page */
+.guide {
+  position: sticky;
+  top: 16px;
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
+}
+
+/* ---------- Small screens (keep this block at the bottom) ---------- */
 @media (max-width: 900px) {
   .problem-layout {
     grid-template-columns: 1fr; /* stack the panels */
@@ -447,5 +458,18 @@ body {
 
   .problem-title-row {
     flex-wrap: wrap;
+  }
+
+  .guide {
+    position: static; /* sticky isn't useful when stacked */
+    max-height: none;
+  }
+
+  .search-input {
+    flex: 1 1 100%; /* full-width search on its own line */
+  }
+
+  .controls select {
+    margin-left: 0;
   }
 }

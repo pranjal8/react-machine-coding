@@ -44,7 +44,7 @@ function ProblemPage() {
           {Solution ? <Solution /> : <p>Not built yet.</p>}
         </section>
 
-        <aside className="requirements">
+        <aside className="requirements guide">
           <h2>Requirements</h2>
           <p className="problem-description">{problem.description}</p>
 
@@ -58,12 +58,36 @@ function ProblemPage() {
             <p>Coming soon.</p>
           )}
 
+          {hints.length > 0 && <Hints key={`h-${id}`} hints={hints} />}
           {breakdown.length > 0 && (
             <Breakdown key={`b-${id}`} steps={breakdown} />
           )}
-          {hints.length > 0 && <Hints key={`h-${id}`} hints={hints} />}
         </aside>
       </div>
+    </div>
+  );
+}
+
+function Hints({ hints }) {
+  const [shown, setShown] = useState(0);
+
+  return (
+    <div className="hints">
+      <h2>
+        Hints ({shown} of {hints.length})
+      </h2>
+      {shown > 0 && (
+        <ol>
+          {hints.slice(0, shown).map((hint) => (
+            <li key={hint}>{hint}</li>
+          ))}
+        </ol>
+      )}
+      {shown < hints.length && (
+        <button className="hint-btn" onClick={() => setShown(shown + 1)}>
+          {shown === 0 ? "Show hint" : "Show next hint"}
+        </button>
+      )}
     </div>
   );
 }
@@ -84,28 +108,6 @@ function Breakdown({ steps }) {
       <button className="hint-btn" onClick={() => setOpen(!open)}>
         {open ? "Hide breakdown" : "Show breakdown"}
       </button>
-    </div>
-  );
-}
-
-function Hints({ hints }) {
-  const [shown, setShown] = useState(0);
-
-  return (
-    <div className="hints">
-      <h2>Hint</h2>
-      {shown > 0 && (
-        <ol>
-          {hints.slice(0, shown).map((hint) => (
-            <li key={hint}>{hint}</li>
-          ))}
-        </ol>
-      )}
-      {shown < hints.length && (
-        <button className="hint-btn" onClick={() => setShown(shown + 1)}>
-          {shown === 0 ? "Show hint" : "Show next hint"}
-        </button>
-      )}
     </div>
   );
 }
